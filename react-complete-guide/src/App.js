@@ -10,6 +10,8 @@ function App() {
         
         <h2>Let's Get Started!</h2>
         <ExpenseItem></ExpenseItem>
+        <ExpenseItem></ExpenseItem>
+        <ExpenseItem></ExpenseItem>
       </header>
     </div>
   );
