@@ -1,19 +1,29 @@
-.App {
+
+div.expense-index {
   text-align: center;
-}
-
-
-
-
-.App-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  /* justify-content: center; */
+  align-items: flex-start;
+  justify-content: center;
+  padding-left: 10rem;
   font-size: calc(10px + 2vmin);
   color: white;
 }
 
+div.expense-index h2 {
 
+  text-align: center;
+}
+
+.expense-index-items {
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  padding-left: 5rem;
+  margin: 10rem 5rem;
+  border-radius: 12px;
+  background-color: #320c0c;
+  color: #bb7676;
+}
