@@ -3,91 +3,67 @@ import {useState} from 'react';
 import './ExpenseForm.css';
 
 const ExpenseForm = () => {
-    // const [enteredTitle, setEnteredTitle] = useState('');
-    // const [enteredAmount, setEnteredAmount] = useState('');
-    // const [enteredDate, setEnteredDate] = useState('');
-    
-    const [userInput, setUserInput] = useState({
-        enteredTitle: '',
-        enteredAmount: '',
-        enteredDate: ''
-    });
+    const [enteredTitle, setEnteredTitle] = useState('');
+    const [enteredAmount, setEnteredAmount] = useState('');
+    const [enteredDate, setEnteredDate] = useState('');
     
 
     const titleChangeHandler = (event) => {
-        // individual change
-        // setEnteredTitle(event.target.value);
-        
-        // faulty method unified
-        // setUserInput({
-        //     ...userInput,
-        //     enteredTitle: event.target.value,
-        // });
-
-        setUserInput(prevState => {
-            return {
-            ...prevState,
-            enteredTitle: Number(event.target.value),
-            };
-        });
+        // individual title change
+        setEnteredTitle(event.target.value);
     };
 
-    const amountChangeHandler = event => {
-        setUserInput(prevState => {
-            return {
-            ...prevState,
-            enteredDate: new Date(event.target.value),
-            };
-        });
+    const amountChangeHandler = (event) => {
+        // individual amount change
+        console.log(event.target.value)
+        setEnteredAmount(event.target.value);
     };
 
-    const dateChangeHandler = event => {
-        setUserInput({
-            ...userInput,
-            enteredDate: event.target.value,
-        });
+    const dateChangeHandler = (event) => {
+        // individual date change
+        setEnteredDate(event.target.value);
     };
 
     const submitHandler = event => {
         event.preventDefault();
-        titleChangeHandler(event);
-        console.log('title_handler: ' + userInput.enteredTitle);
-        amountChangeHandler(event);
-        console.log('amount_handler: ' + userInput.enteredAmount);
-        dateChangeHandler(event);
+        const expenseData = {
+            title: enteredTitle,
+            amount: enteredAmount,
+            date: new Date(enteredDate)
+        };
 
-        // TODO" it has a data binding failure; 
-        console.log('date_handler: ' + userInput.enteredDate);
-        setUserInput.enteredTitle();
+        console.log(expenseData);
+        setEnteredTitle('');
+        setEnteredAmount('');
+        setEnteredDate('');
     };
 
     return (
         <form onSubmit={submitHandler}>  
             <div className="new-expense__controls">
                 <div className='new-expense__control'>
-                    <label htmlFor="Title">Description</label>
+                    <label htmlFor="title">Description</label>
                     <input 
                         type="text" 
-                        value={userInput.enteredTitle}
+                        value={enteredTitle}
                         onChange={titleChangeHandler} 
                     />
                 </div>
                 <div className='new-expense__control'>
-                    <label htmlFor="Amount">Amount</label>
+                    <label htmlFor="amount">Amount</label>
                     <input 
-                        type="number" 
-                        min="0.05" 
-                        step="0.05" 
-                        value={userInput.enteredAmount}
-                        onChanged={amountChangeHandler} 
-                    />
+                        type='number' 
+                        min='0.00' 
+                        step='0.05' 
+                        value={enteredAmount || 0.00}
+                        onChange={amountChangeHandler} />
                 </div>
                 <div className='new-expense__control'>
-                    <label htmlFor="Date">Date</label>
+                    <label htmlFor="date">Date</label>
                     <input type="date" 
                         min="2020-01-01" 
                         max="2024-12-31" 
-                        value={userInput.enteredDate}
+                        value={enteredDate}
                         onChange={dateChangeHandler} 
                     />
                 </div>
