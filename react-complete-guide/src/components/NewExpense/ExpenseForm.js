@@ -56,6 +56,7 @@ const ExpenseForm = () => {
         console.log('amount_handler: ' + userInput.enteredAmount);
         dateChangeHandler(event);
 
+        // TODO" it has a data binding failure; 
         console.log('date_handler: ' + userInput.enteredDate);
         setUserInput.enteredTitle();
     };
