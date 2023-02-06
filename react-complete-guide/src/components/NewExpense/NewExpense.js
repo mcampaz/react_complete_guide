@@ -1,14 +1,10 @@
-import {Form} from 'react'
-
-import Expenseform from 'ExpenseForm.js'
-import Card from '../UI/Card.js';
+import Expenseform from './ExpenseForm'
+import Card from '../UI/Card';
 
 const NewExpense = (props) => {
    return (
         <Card>
-            <Expenseform>
-
-            </Expenseform>
+            <Expenseform />
         </Card>
     )
 };
