@@ -27,7 +27,7 @@ const ExpenseForm = () => {
         setUserInput(prevState => {
             return {
             ...prevState,
-            enteredTitle: event.target.value,
+            enteredTitle: Number(event.target.value),
             };
         });
     };
@@ -36,7 +36,7 @@ const ExpenseForm = () => {
         setUserInput(prevState => {
             return {
             ...prevState,
-            enteredDate: event.target.value,
+            enteredDate: new Date(event.target.value),
             };
         });
     };
@@ -50,7 +50,14 @@ const ExpenseForm = () => {
 
     const submitHandler = event => {
         event.preventDefault();
-        
+        titleChangeHandler(event);
+        console.log('title_handler: ' + userInput.enteredTitle);
+        amountChangeHandler(event);
+        console.log('amount_handler: ' + userInput.enteredAmount);
+        dateChangeHandler(event);
+
+        console.log('date_handler: ' + userInput.enteredDate);
+        setUserInput.enteredTitle();
     };
 
     return (
@@ -58,15 +65,30 @@ const ExpenseForm = () => {
             <div className="new-expense__controls">
                 <div className='new-expense__control'>
                     <label htmlFor="Title">Description</label>
-                    <input type="text" onChange={titleChangeHandler} />
+                    <input 
+                        type="text" 
+                        value={userInput.enteredTitle}
+                        onChange={titleChangeHandler} 
+                    />
                 </div>
                 <div className='new-expense__control'>
                     <label htmlFor="Amount">Amount</label>
-                    <input type="number" min="0.05" step="0.05" onChanged={amountChangeHandler} />
+                    <input 
+                        type="number" 
+                        min="0.05" 
+                        step="0.05" 
+                        value={userInput.enteredAmount}
+                        onChanged={amountChangeHandler} 
+                    />
                 </div>
                 <div className='new-expense__control'>
                     <label htmlFor="Date">Date</label>
-                    <input type="date" min="2020-01-01" max="2024-12-31" onChange={dateChangeHandler} />
+                    <input type="date" 
+                        min="2020-01-01" 
+                        max="2024-12-31" 
+                        value={userInput.enteredDate}
+                        onChange={dateChangeHandler} 
+                    />
                 </div>
             </div>
             <div className="new-expense__add">
