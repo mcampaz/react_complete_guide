@@ -1,8 +1,12 @@
 import './App.css';
 
+import {useState} from "react";
+
 import Card from './components/UI/Card';
 import ExpenseItem from './components/Expenses/ExpenseItem';
 import NewExpense from './components/NewExpense/NewExpense';
+import ExpenseFilter from './components/Expenses/ExpenseFilter';
+
 
 const App = () => {
   const expenses = [
@@ -36,12 +40,22 @@ const App = () => {
   const addExpenseHandler = newExpense => {
     console.log('In App.js: ');
     console.log(newExpense);
-  }
+  };
+
+  const [filteredYear, setFilteredYear] = useState('2012');
+
+  const selectYearHandler = selectedYear =>{
+    console.log('In App.js: ');
+    console.log(selectedYear);
+    setFilteredYear(selectedYear)
+  };
 
   return (
     <div className="expense-index">
       <NewExpense onAddExpense={addExpenseHandler}/>
+      
       <Card className="expense-index-items">      
+        <ExpenseFilter selected={filteredYear} onSelectedYear={selectYearHandler}/>
         {
           expenses.map(expense => (
             <ExpenseItem expenseDate={expense.expenseDate}
