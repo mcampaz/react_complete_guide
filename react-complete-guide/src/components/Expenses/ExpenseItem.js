@@ -7,7 +7,7 @@ import Card from '../UI/Card.js';
 const ExpenseItem = (props) => {
     // trigger state change; redrawn component
     const [expenseTitle, setTitle] = useState(props.expenseTitle);
-    console.log("Expense drwan by react!")
+    // console.log("Expense drawn by react!")
     const clickHandler = () => {
         setTitle('Updated!');
         console.log(expenseTitle);

@@ -33,9 +33,14 @@ const App = () => {
     }
   ];
 
+  const addExpenseHandler = newExpense => {
+    console.log('In App.js: ');
+    console.log(newExpense);
+  }
+
   return (
     <div className="expense-index">
-      <NewExpense />
+      <NewExpense onAddExpense={addExpenseHandler}/>
       <Card className="expense-index-items">      
         {
           expenses.map(expense => (
