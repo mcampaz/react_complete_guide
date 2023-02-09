@@ -97,10 +97,14 @@ const App = () => {
   const [filteredYear, setFilteredYear] = useState('2012');
 
   const selectYearHandler = selectedYear =>{
-    console.log('In App.js: ');
-    console.log(selectedYear);
-    setFilteredYear(selectedYear)
+    console.log('In App.js: before filter');
+    console.log(filteredYear);
+    setFilteredYear(selectedYear);
   };
+
+  const expensesDateByYear = expenses.filter(expense => {
+    return expense.expenseDate.getFullYear().toString() === filteredYear;
+  });
 
   return (
     <div className="expense-index">
@@ -109,7 +113,7 @@ const App = () => {
       <Card className="expense-index-items">      
         <ExpenseFilter selected={filteredYear} onSelectedYear={selectYearHandler}/>
         {
-          expenses.map(expense => (
+          expensesDateByYear.map(expense => (
             <ExpenseItem key={expense.id} expenseDate={expense.expenseDate}
                         expenseTitle={expense.expenseTitle}
                         expenseAmount={expense.expenseAmount}
